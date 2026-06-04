@@ -259,6 +259,14 @@ stack.addEventListener("click", function (e) {
     overlay.classList.add("active");
     viewerCard.classList.add("active");
 
+    const noteId = Number(topCard.dataset.id);
+    const note = notes.find(note => note.id === noteId);
+
+    if(note.pin){
+        document.querySelector(".unpinIcon").classList.toggle("pinToggle");
+        document.querySelector(".pinIcon").classList.toggle("pinToggle");
+    }
+
 });
 
 backBtn.addEventListener("click", () => {
@@ -283,7 +291,9 @@ pinBtn.addEventListener("click", function () {
     if (!note) return;
 
     note.pin = !note.pin;
-
+    document.querySelector(".pinIcon").classList.toggle("pinToggle");
+    document.querySelector(".unpinIcon").classList.toggle("pinToggle");
+    
     pin.classList.toggle("folder__pin")
     viewerCard.innerHTML = topCard.innerHTML;
 

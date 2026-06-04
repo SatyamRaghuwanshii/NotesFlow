@@ -336,11 +336,7 @@ a { color: inherit; text-decoration: none; }
     fill: var(--faint);
 }
 
-.pin{
-  display: initial;
-}
-
-.unpin{
+.pinToggle{
   display: none;
 }
 
@@ -436,6 +432,7 @@ a { color: inherit; text-decoration: none; }
 .pinCard{
   display: none;
 }
+
 
 .folder__pin {
   display: initial;
@@ -697,7 +694,7 @@ a { color: inherit; text-decoration: none; }
   .folder__header { height: 160px; }
   .folder__tab { width: 74%; }
   .folder__summary { font-size: 13px; }
-  .toasts {width: auto; margin-top: -48px; }
+  .toasts {width: auto; margin-right: 12px;}
 }
 
 @media (prefers-reduced-motion: reduce) {
