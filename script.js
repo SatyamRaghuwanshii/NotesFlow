@@ -188,9 +188,9 @@ let activeCard = null;
 
 stack.addEventListener("pointerdown", (e) => {
 
-    if (cards.length <= 4){
+    if (cards.length <= 4) {
         activeCard = document.querySelector(`.card:nth-child(${1})`);
-    }else{
+    } else {
         activeCard = document.querySelector(`.card:nth-child(${cards.length})`);
     }
     startX = e.clientX;
@@ -262,9 +262,12 @@ stack.addEventListener("click", function (e) {
     const noteId = Number(topCard.dataset.id);
     const note = notes.find(note => note.id === noteId);
 
-    if(note.pin){
-        document.querySelector(".unpinIcon").classList.toggle("pinToggle");
-        document.querySelector(".pinIcon").classList.toggle("pinToggle");
+    if (note.pin) {
+        document.querySelector(".action--pin span").textContent = "unpin";
+        document.querySelector(".unpinIcon").classList.remove("pinToggle");
+        document.querySelector(".pinIcon").classList.add("pinToggle");
+    } else {
+        document.querySelector(".action--pin span").textContent = "pin";
     }
 
 });
@@ -291,9 +294,14 @@ pinBtn.addEventListener("click", function () {
     if (!note) return;
 
     note.pin = !note.pin;
+    if (note.pin) {
+        document.querySelector(".action--pin span").textContent = "unpin";
+    } else {
+        document.querySelector(".action--pin span").textContent = "pin";
+    }
     document.querySelector(".pinIcon").classList.toggle("pinToggle");
     document.querySelector(".unpinIcon").classList.toggle("pinToggle");
-    
+
     pin.classList.toggle("folder__pin")
     viewerCard.innerHTML = topCard.innerHTML;
 
@@ -306,11 +314,11 @@ deleteBtn.addEventListener("click", function () {
     const note = notes.filter(note => note.id !== noteId);
 
     if (!note) return;
-    
-    localStorage.setItem("notes",JSON.stringify(note));
-    
+
+    localStorage.setItem("notes", JSON.stringify(note));
+
     backBtn.click();
-    
+
     createCard()
 });
 
